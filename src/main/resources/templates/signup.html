@@ -31,7 +31,7 @@
                     <label for="email">Email address</label>
                 </div>
                 <div style="margin: 5px 0 20px 0">
-                    <input type="text" name="email" id="email" required autofocus>
+                    <input type="email" name="email" id="email" required autofocus>
                 </div>
                 <div style="margin: 30px 0 30px 0">
                     <button type="submit" class="btn btn-outline-dark">Sign up</button>
@@ -41,7 +41,7 @@
         <div class="col">
         </div>
     </div>
-    <div class="row">
+    <div th:if="${info == 'signup'}" class="row">
         <div class="col" style="align-content: center">
         </div>
         <div class="fixed" style="background-color: darkgray; width: 400px">
@@ -58,6 +58,44 @@
 
                 <div style="margin: 30px 0 30px 0">
                     <button type="submit" class="btn btn-outline-dark">Enter</button>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    <div th:if="${info == 'unverified'}" class="row">
+        <div class="col" style="align-content: center">
+        </div>
+        <div class="fixed" style="background-color: rosybrown; width: 400px">
+            <form th:action="@{'/verify/' + ${verificationToken}}" method="post">
+                <div style="margin: 20px">
+                </div>
+                <div style="margin: 5px">
+                    <p style="color: crimson">Verify your email</p>
+                </div>
+                <div style="margin: 30px 0 30px 0">
+                    <button type="submit" class="btn btn-outline-danger">Verify</button>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    <div th:if="${info == 'verified'}" class="row">
+        <div class="col" style="align-content: center">
+        </div>
+        <div class="fixed" style="background-color: rosybrown; width: 400px">
+            <form action="/login" method="post">
+                <div style="margin: 20px">
+                </div>
+                <div style="margin: 5px">
+                    <p style="color: crimson">Log in</p>
+                </div>
+                <div style="margin: 30px 0 30px 0">
+                    <input name="username" type="hidden" th:value="${username}">
+                    <input name="password" type="hidden" th:value="${password}">
+                    <button type="submit" class="btn btn-outline-danger">Login</button>
                 </div>
             </form>
         </div>
